@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>العم حكيم — اختبار الشخصية</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --bg:#080b0f;
+  --panel:#111820;
+  --panel2:#18222b;
+  --green:#49ff88;
+  --yellow:#ffd84d;
+  --red:#ff4d5a;
+  --text:#e9f5ed;
+  --muted:#82918a;
+  --border:#294034;
+}
+
+body{
+  background:
+    radial-gradient(circle at 50% 10%,#17251d 0%,#080b0f 45%),
+    #080b0f;
+  color:var(--text);
+  font-family:monospace;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.08;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 3px,
+    #fff 4px
+  );
+  z-index:20;
+}
+
+.container{
+  width:min(850px,94%);
+  margin:auto;
+}
+
+header{
+  padding:25px 0 15px;
+  text-align:center;
+}
+
+.logo{
+  color:var(--green);
+  font-size:clamp(25px,6vw,42px);
+  font-weight:bold;
+  text-shadow:4px 4px 0 #123d25;
+  letter-spacing:2px;
+}
+
+.subtitle{
+  margin-top:8px;
+  color:var(--yellow);
+  font-size:14px;
+}
+
+.ad{
+  height:90px;
+  border:1px dashed #35423b;
+  background:#0c1115;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#536059;
+  font-size:11px;
+  margin:15px 0;
+}
+
+.status{
+  border:1px solid var(--border);
+  background:#0d1419;
+  padding:9px 12px;
+  color:var(--green);
+  font-size:12px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.dot{
+  display:inline-block;
+  width:8px;
+  height:8px;
+  background:var(--green);
+  box-shadow:0 0 10px var(--green);
+  margin-left:5px;
+}
+
+.game{
+  margin-top:15px;
+  background:var(--panel);
+  border:2px solid #24372b;
+  box-shadow:
+    0 0 0 4px #080c0f,
+    0 0 30px rgba(73,255,136,.08);
+  padding:18px;
+}
+
+.character-area{
+  display:flex;
+  gap:20px;
+  align-items:center;
+  min-height:240px;
+  padding:15px;
+  background:linear-gradient(180deg,#111a20,#0c1116);
+  border:1px solid #26362e;
+}
+
+.character{
+  width:180px;
+  min-width:180px;
+  height:190px;
+  position:relative;
+  animation:bob 2s steps(2) infinite;
+}
+
+@keyframes bob{
+  50%{transform:translateY(-4px)}
+}
+
+.head{
+  width:75px;
+  height:70px;
+  background:#c98b60;
+  border:5px solid #281a14;
+  position:absolute;
+  top:15px;
+  left:52px;
+  box-shadow:inset -7px 0 #9e6545;
+}
+
+.hair{
+  width:78px;
+  height:18px;
+  background:#292019;
+  position:absolute;
+  top:8px;
+  left:50px;
+  border:4px solid #17120f;
+}
+
+.eye{
+  width:8px;
+  height:8px;
+  background:#111;
+  position:absolute;
+  top:42px;
+}
+
+.eye.left{left:68px}
+.eye.right{left:105px}
+
+.nose{
+  position:absolute;
+  top:48px;
+  left:87px;
+  width:12px;
+  height:8px;
+  border-right:4px solid #79482f;
+}
+
+.mustache{
+  position:absolute;
+  top:60px;
+  left:74px;
+  width:40px;
+  height:10px;
+  background:#241b17;
+}
+
+.body{
+  position:absolute;
+  top:82px;
+  left:40px;
+  width:100px;
+  height:70px;
+  background:#304e3b;
+  border:5px solid #16251d;
+}
+
+.arm{
+  position:absolute;
+  width:35px;
+  height:18px;
+  background:#c98b60;
+  top:100px;
+}
+
+.arm.left{
+  left:10px;
+  transform:rotate(25deg);
+}
+
+.arm.right{
+  right:10px;
+  transform:rotate(-25deg);
+}
+
+.leg{
+  position:absolute;
+  width:35px;
+  height:55px;
+  background:#242b31;
+  top:145px;
+}
+
+.leg.left{
+  left:48px;
+  transform:rotate(12deg);
+}
+
+.leg.right{
+  right:48px;
+  transform:rotate(-12deg);
+}
+
+.shoe{
+  position:absolute;
+  width:45px;
+  height:17px;
+  background:#101214;
+  top:183px;
+}
+
+.shoe.left{left:32px}
+.shoe.right{right:32px}
+
+.bubble{
+  flex:1;
+  background:#e8e8d8;
+  color:#151b18;
+  padding:20px;
+  min-height:120px;
+  border:4px solid #27312b;
+  position:relative;
+  line-height:1.8;
+  font-size:15px;
+  box-shadow:6px 6px 0 #050708;
+}
+
+.bubble:after{
+  content:"";
+  position:absolute;
+  right:-18px;
+  top:35px;
+  border-width:10px 0 10px 18px;
+  border-style:solid;
+  border-color:transparent transparent transparent #27312b;
+}
+
+.screen{
+  margin-top:18px;
+}
+
+.welcome{
+  text-align:center;
+}
+
+.welcome h2{
+  color:var(--green);
+  margin-bottom:15px;
+  font-size:21px;
+}
+
+.welcome p{
+  color:#aab8b0;
+  line-height:1.8;
+  margin-bottom:20px;
+}
+
+.name-input{
+  width:100%;
+  background:#080d10;
+  color:white;
+  border:2px solid #30463a;
+  padding:15px;
+  outline:none;
+  font-family:inherit;
+  font-size:15px;
+  text-align:center;
+  margin-bottom:12px;
+}
+
+.name-input:focus{
+  border-color:var(--green);
+  box-shadow:0 0 12px rgba(73,255,136,.15);
+}
+
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
+
+.main-btn{
+  width:100%;
+  padding:15px;
+  border:2px solid var(--green);
+  background:#12331f;
+  color:var(--green);
+  font-size:16px;
+  font-weight:bold;
+}
+
+.main-btn:hover{
+  background:var(--green);
+  color:#071009;
+}
+
+.quiz{
+  display:none;
+}
+
+.quiz-top{
+  display:flex;
+  justify-content:space-between;
+  color:#8e9d95;
+  font-size:13px;
+  margin-bottom:10px;
+}
+
+.percent{
+  color:var(--green);
+}
+
+.progress-box{
+  width:100%;
+  height:12px;
+  background:#070a0c;
+  border:1px solid #26382e;
+  margin-bottom:25px;
+}
+
+.progress{
+  height:100%;
+  width:0%;
+  background:var(--green);
+  box-shadow:0 0 12px rgba(73,255,136,.4);
+  transition:.3s;
+}
+
+.question{
+  background:#0b1115;
+  border:1px solid #2b3e33;
+  padding:22px;
+  color:white;
+  font-size:18px;
+  line-height:1.8;
+  text-align:center;
+  min-height:90px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.answers{
+  display:grid;
+  gap:10px;
+  margin-top:15px;
+}
+
+.answer{
+  background:#121b20;
+  border:2px solid #293a31;
+  color:#d9e5de;
+  padding:15px;
+  text-align:right;
+  font-size:14px;
+}
+
+.answer:hover{
+  border-color:var(--green);
+  color:var(--green);
+  background:#13231a;
+}
+
+.answer.selected{
+  border-color:var(--green);
+  background:#153a24;
+  color:var(--green);
+}
+
+.result{
+  display:none;
+  text-align:center;
+}
+
+.result h2{
+  color:var(--yellow);
+  margin-bottom:15px;
+}
+
+.result-card{
+  border:2px solid #314638;
+  background:#0b1114;
+  padding:25px;
+}
+
+.result-type{
+  font-size:25px;
+  color:var(--green);
+  margin:12px 0;
+}
+
+.result-text{
+  color:#b7c4bd;
+  line-height:2;
+}
+
+.score{
+  margin-top:20px;
+  color:#77867e;
+  font-size:12px;
+}
+
+.restart{
+  margin-top:20px;
+  padding:13px 25px;
+  background:#16241c;
+  border:2px solid var(--green);
+  color:var(--green);
+}
+
+footer{
+  text-align:center;
+  padding:25px 0 35px;
+  color:#56625d;
+  font-size:11px;
+}
+
+footer a{
+  color:#6c8b78;
+}
+
+@media(max-width:600px){
+
+  .game{
+    padding:10px;
+  }
+
+  .character-area{
+    flex-direction:column;
+  }
+
+  .character{
+    transform:scale(.9);
+    margin-bottom:-15px;
+  }
+
+  .bubble:after{
+    display:none;
+  }
+
+  .bubble{
+    width:100%;
+    font-size:13px;
+  }
+
+  .question{
+    font-size:15px;
+  }
+}
+</style>
+</head><body>
+
+<div class="scanlines"></div>
+
+<header class="topbar">
+    <div class="logo">⚡ العم حكيم</div>
+
+    <button id="soundToggle" class="sound-btn" onclick="toggleSound()">
+        🔊 الصوت
+    </button>
+</header>
+
+<main class="game">
+
+    <!-- شاشة البداية -->
+    <section id="startScreen" class="screen active">
+
+        <div class="pixel-title">
+            العم حكيم
+        </div>
+
+        <div class="subtitle">
+            اختبار الشخصية — إصدار الألعاب القديمة
+        </div>
+
+        <div class="character-area">
+
+            <div class="character">
+                <div class="head">
+                    <div class="hair"></div>
+                    <div class="eye eye1"></div>
+                    <div class="eye eye2"></div>
+                    <div class="nose"></div>
+                    <div class="mustache"></div>
+                </div>
+
+                <div class="body">
+                    <div class="shirt"></div>
+                </div>
+
+                <div class="arm arm1"></div>
+                <div class="arm arm2"></div>
+
+                <div class="leg leg1"></div>
+                <div class="leg leg2"></div>
+
+                <div class="chair">
+                    <div class="chair-back"></div>
+                    <div class="chair-seat"></div>
+                    <div class="chair-leg l1"></div>
+                    <div class="chair-leg l2"></div>
+                </div>
+            </div>
+
+            <div class="speech">
+                <span id="introText">
+                    أهلاً يا صاحبي!<br>
+                    أنا العم حكيم... وهكتشف شخصيتك.
+                </span>
+            </div>
+
+        </div>
+
+        <div class="name-box">
+            <label for="playerName">اكتب اسمك:</label>
+
+            <input
+                type="text"
+                id="playerName"
+                maxlength="20"
+                placeholder="اسمك هنا..."
+                autocomplete="off"
+            >
+        </div>
+
+        <button class="main-btn" onclick="startGame()">
+            ▶ ابدأ الاختبار
+        </button>
+
+        <div class="ad-slot">
+            <span>ADVERTISEMENT</span>
+        </div>
+
+    </section>
+
+
+    <!-- شاشة الأسئلة -->
+    <section id="quizScreen" class="screen">
+
+        <div class="quiz-header">
+
+            <div class="question-counter">
+                السؤال <span id="questionNumber">1</span> من 24
+            </div>
+
+            <div class="progress-container">
+                <div id="progressBar"></div>
+            </div>
+
+        </div>
+
+        <div class="character-area quiz-character">
+
+            <div class="character small-character">
+                <div class="head">
+                    <div class="hair"></div>
+                    <div class="eye eye1"></div>
+                    <div class="eye eye2"></div>
+                    <div class="nose"></div>
+                    <div class="mustache"></div>
+                </div>
+
+                <div class="body">
+                    <div class="shirt"></div>
+                </div>
+
+                <div class="arm arm1"></div>
+                <div class="arm arm2"></div>
+
+                <div class="leg leg1"></div>
+                <div class="leg leg2"></div>
+
+                <div class="chair">
+                    <div class="chair-back"></div>
+                    <div class="chair-seat"></div>
+                    <div class="chair-leg l1"></div>
+                    <div class="chair-leg l2"></div>
+                </div>
+            </div>
+
+            <div class="speech question-box">
+                <span id="questionText"></span>
+            </div>
+
+        </div>
+
+        <div id="answers" class="answers"></div>
+
+        <div class="ad-slot">
+            <span>ADVERTISEMENT</span>
+        </div>
+
+    </section>
+
+
+    <!-- شاشة النتيجة -->
+    <section id="resultScreen" class="screen">
+
+        <div class="result-title">
+            ★ النتيجة ★
+        </div>
+
+        <div class="result-card">
+
+            <div class="result-greeting">
+                يا <span id="resultName"></span>...
+            </div>
+
+            <div id="resultIcon" class="result-icon">
+                ?
+            </div>
+
+            <h2 id="resultType"></h2>
+
+            <p id="resultDescription"></p>
+
+            <div class="score-box">
+                مستوى شخصيتك:
+                <strong id="resultScore"></strong>
+            </div>
+
+        </div>
+
+        <button class="main-btn" onclick="restartGame()">
+            🔄 العب من جديد
+        </button>
+
+        <div class="ad-slot">
+            <span>ADVERTISEMENT</span>
+        </div>
+
+        <button class="privacy-btn" onclick="showPrivacy()">
+            سياسة الخصوصية
+        </button>
+
+    </section>
+
+</main>
+
+
+<!-- سياسة الخصوصية -->
+<div id="privacyModal" class="modal">
+
+    <div class="modal-box">
+
+        <button class="close-modal" onclick="closePrivacy()">×</button>
+
+        <h2>سياسة الخصوصية</h2>
+
+        <p>
+            هذا الموقع عبارة عن اختبار ترفيهي للشخصية.
+            لا نطلب معلومات حساسة من المستخدم.
+        </p>
+
+        <p>
+            قد يتم استخدام خدمات إعلانية مثل Google AdSense
+            لعرض الإعلانات، وقد تستخدم هذه الخدمات ملفات تعريف
+            الارتباط وفقاً لسياساتها الخاصة.
+        </p>
+
+        <p>
+            باستخدامك للموقع فأنت توافق على استخدامه
+            وفقاً لهذه السياسة.
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+/* =========================================
+   نظام الصوت — سيتم تشغيله بعد ضغط المستخدم
+========================================= */
+
+let audioContext = null;
+let musicEnabled = true;
+let musicTimer = null;
+let musicStep = 0;
+
+
+/* إنشاء AudioContext */
+function initAudio() {
+
+    if (!audioContext) {
+        audioContext = new (
+            window.AudioContext ||
+            window.webkitAudioContext
+        )();
+    }
+
+    if (audioContext.state === "suspended") {
+        audioContext.resume();
+    }
+}
+
+
+/* صوت زر */
+function playClickSound() {
+
+    if (!musicEnabled) return;
+
+    initAudio();
+
+    const osc = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    osc.type = "square";
+
+    osc.frequency.setValueAtTime(
+        520,
+        audioContext.currentTime
+    );
+
+    osc.frequency.exponentialRampToValueAtTime(
+        220,
+        audioContext.currentTime + 0.08
+    );
+
+    gain.gain.setValueAtTime(
+        0.06,
+        audioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        audioContext.currentTime + 0.08
+    );
+
+    osc.connect(gain);
+    gain.connect(audioContext.destination);
+
+    osc.start();
+    osc.stop(audioContext.currentTime + 0.08);
+}
+
+
+/* صوت الانتقال بين الأسئلة */
+function playNextSound() {
+
+    if (!musicEnabled) return;
+
+    initAudio();
+
+    const osc = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    osc.type = "square";
+
+    osc.frequency.setValueAtTime(
+        300,
+        audioContext.currentTime
+    );
+
+    osc.frequency.linearRampToValueAtTime(
+        600,
+        audioContext.currentTime + 0.12
+    );
+
+    gain.gain.setValueAtTime(
+        0.05,
+        audioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        audioContext.currentTime + 0.12
+    );
+
+    osc.connect(gain);
+    gain.connect(audioContext.destination);
+
+    osc.start();
+    osc.stop(audioContext.currentTime + 0.12);
+}
+
+
+/* صوت ظهور النتيجة */
+function playResultSound() {
+
+    if (!musicEnabled) return;
+
+    initAudio();
+
+    const notes = [330, 440, 550, 660];
+
+    notes.forEach((freq, index) => {
+
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        const start =
+            audioContext.currentTime +
+            index * 0.12;
+
+        osc.type = "square";
+
+        osc.frequency.setValueAtTime(
+            freq,
+            start
+        );
+
+        gain.gain.setValueAtTime(
+            0.05,
+            start
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            start + 0.11
+        );
+
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+
+        osc.start(start);
+        osc.stop(start + 0.11);
+    });
+}
+
+
+/* تشغيل موسيقى Old School */
+function startMusic() {
+
+    if (!musicEnabled) return;
+
+    initAudio();
+
+    if (musicTimer) return;
+
+    const melody = [
+        262, 330, 392, 330,
+        294, 349, 440, 349,
+        262, 330, 392, 494,
+        440, 392, 330, 262
+    ];
+
+    function playNote() {
+
+        if (!musicEnabled) return;
+
+        const freq = melody[musicStep];
+
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        osc.type = "square";
+
+        osc.frequency.value = freq;
+
+        gain.gain.setValueAtTime(
+            0.025,
+            audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            audioContext.currentTime + 0.16
+        );
+
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+
+        osc.start();
+        osc.stop(audioContext.currentTime + 0.16);
+
+        musicStep++;
+
+        if (musicStep >= melody.length) {
+            musicStep = 0;
+        }
+    }
+
+    playNote();
+
+    musicTimer = setInterval(
+        playNote,
+        180
+    );
+}
+
+
+/* تشغيل / إيقاف الصوت */
+function toggleSound() {
+
+    musicEnabled = !musicEnabled;
+
+    const button =
+        document.getElementById("soundToggle");
+
+    if (musicEnabled) {
+
+        button.textContent = "🔊 الصوت";
+
+        initAudio();
+        startMusic();
+
+    } else {
+
+        button.textContent = "🔇 صامت";
+
+        if (musicTimer) {
+            clearInterval(musicTimer);
+            musicTimer = null;
+        }
+    }
+}
+
+
+/* أزرار الموقع */
+document.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target.matches(
+                "button:not(#soundToggle)"
+            )
+        ) {
+            playClickSound();
+        }
+
+    }
+);
+
+
+/* إظهار سياسة الخصوصية */
+function showPrivacy() {
+
+    document
+        .getElementById("privacyModal")
+        .classList.add("show");
+}
+
+
+/* إغلاق سياسة الخصوصية */
+function closePrivacy() {
+
+    document
+        .getElementById("privacyModal")
+        .classList.remove("show");
+}
+</script><script>
+/* =========================================
+   بيانات الأسئلة
+========================================= */
+
+const questions = [
+    {
+        q: "لو قدامك مشكلة صعبة، بتعمل اي؟",
+        a: [
+            ["أفكر فيها بهدوء", "calm"],
+            ["أتصرف بسرعة", "bold"],
+            ["أسأل حد يساعدني", "social"],
+            ["أجرب كذا حل", "creative"]
+        ]
+    },
+    {
+        q: "لو صاحبك زعلان منك بدون سبب، تعمل اي؟",
+        a: [
+            ["أسأله بهدوء", "calm"],
+            ["أسيبه لحد ما يهدى", "bold"],
+            ["أحاول أصالحه", "social"],
+            ["أعمل حاجة تضحكه", "creative"]
+        ]
+    },
+    {
+        q: "لما تدخل مكان جديد، أول حاجة بتعملها؟",
+        a: [
+            ["أراقب المكان", "calm"],
+            ["أبدأ أتكلم", "bold"],
+            ["أتعرف على الناس", "social"],
+            ["أدور على حاجة مختلفة", "creative"]
+        ]
+    },
+    {
+        q: "بتحب الشغل لوحدك ولا مع ناس؟",
+        a: [
+            ["لوحدي", "calm"],
+            ["حسب الموقف", "bold"],
+            ["مع الناس", "social"],
+            ["مش فارقة", "creative"]
+        ]
+    },
+    {
+        q: "لو خسرت في لعبة، رد فعلك؟",
+        a: [
+            ["أشوف أنا غلطت فين", "calm"],
+            ["أحاول أكسب الجولة الجاية", "bold"],
+            ["أهزر مع اللي كسب", "social"],
+            ["أغير طريقة اللعب", "creative"]
+        ]
+    },
+    {
+        q: "إيه أكتر حاجة بتضايقك؟",
+        a: [
+            ["الفوضى", "calm"],
+            ["الاستسلام", "bold"],
+            ["التجاهل", "social"],
+            ["الملل", "creative"]
+        ]
+    },
+    {
+        q: "لو عندك قرار مهم، بتاخده إزاي؟",
+        a: [
+            ["أفكر كويس", "calm"],
+            ["أقرر بسرعة", "bold"],
+            ["أستشير حد", "social"],
+            ["أمشي مع إحساسي", "creative"]
+        ]
+    },
+    {
+        q: "إيه أكتر وصف قريب منك؟",
+        a: [
+            ["هادئ", "calm"],
+            ["جريء", "bold"],
+            ["اجتماعي", "social"],
+            ["خيالي", "creative"]
+        ]
+    },
+    {
+        q: "لو يومك فاضي، تحب تعمل اي؟",
+        a: [
+            ["أقعد لوحدي", "calm"],
+            ["أخرج وأعمل حاجة", "bold"],
+            ["أقابل صحابي", "social"],
+            ["أجرب حاجة جديدة", "creative"]
+        ]
+    },
+    {
+        q: "لو حد انتقدك، تعمل اي؟",
+        a: [
+            ["أفكر في كلامه", "calm"],
+            ["مش بهتم", "bold"],
+            ["أسأله عن السبب", "social"],
+            ["أحول النقد لحاجة مفيدة", "creative"]
+        ]
+    },
+    {
+        q: "بتحب التخطيط ولا العفوية؟",
+        a: [
+            ["التخطيط", "calm"],
+            ["العفوية", "bold"],
+            ["حسب الناس اللي معايا", "social"],
+            ["أحب المفاجآت", "creative"]
+        ]
+    },
+    {
+        q: "لو شفت حاجة غلط بتحصل قدامك؟",
+        a: [
+            ["أفكر قبل ما أتدخل", "calm"],
+            ["أتدخل فوراً", "bold"],
+            ["أطلب مساعدة", "social"],
+            ["أدور على حل مختلف", "creative"]
+        ]
+    },
+    {
+        q: "إيه أكتر حاجة بتخليك مبسوط؟",
+        a: [
+            ["الهدوء", "calm"],
+            ["الإنجاز", "bold"],
+            ["الصحاب", "social"],
+            ["التجارب الجديدة", "creative"]
+        ]
+    },
+    {
+        q: "لو اتزنقت في موقف، مين أول شخص تكلمه؟",
+        a: [
+            ["أحاول أحلها بنفسي", "calm"],
+            ["أتصرف لوحدي", "bold"],
+            ["صاحبي المقرب", "social
